@@ -1,0 +1,174 @@
+@font-face {
+    font-family: label;
+    src: url(./assets/fonts/Poppins-Bold.ttf);
+}
+@font-face {
+    font-family: answer-text;
+    src: url(./assets/fonts/Poppins-ExtraBoldItalic.ttf);
+}
+@font-face {
+    font-family: answer-number;
+    src: url(./assets/fonts/Poppins-ExtraBold.ttf);
+}
+
+:root{
+    --label-clr:hsl(0, 1%, 44%);
+    --err-txt:hsl(0, 100%, 67%);
+    --ans-number:hsl(259, 100%, 65%);
+    --txt-clr:hsl(0, 0%, 8%);
+    --body-clr:hsl(0, 0%, 86%);
+    --input-border:hsl(0, 1%, 44%);
+
+
+}
+
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* Remove default margin */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+    margin: 0;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role='list'],
+ol[role='list'] {
+    list-style: none;
+}
+
+/* Set core root defaults */
+html:focus-within {
+    scroll-behavior: smooth;
+}
+
+/* Set core body defaults */
+body {
+    min-height: 100vh;
+    text-rendering: optimizeSpeed;
+    line-height: 1.5;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+    text-decoration-skip-ink: auto;
+}
+
+/* Make images easier to work with */
+img,
+picture {
+    max-width: 100%;
+    display: block;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+    font: inherit;
+}
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+    html:focus-within {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+body{
+    background-color: var(--body-clr);
+    display: grid;
+    place-content: center;
+}
+input{
+    height: 4rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--input-border);
+    outline: none;
+}
+
+label span{
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-family: label;
+    color: var(--label-clr);
+}
+form section{
+    display: flex;
+    gap: 2rem;
+}
+
+button{
+    border-radius: 50%;
+    border: none;
+    padding: 1.5rem;
+    margin-block-start: 2rem;
+    background-color: var(--ans-number);
+    cursor: pointer;
+    position: absolute;
+    bottom: -32%;
+    right: 0;
+}
+button:hover{
+    background-color: var(--txt-clr);
+}
+
+.main-container{
+    background-color: white;
+    padding: 3rem;
+    border-radius: 1rem;
+    border-bottom-right-radius: 6rem;
+}
+.input-container{
+    position: relative;
+}
+hr{
+    margin-block-start: 3rem;
+}
+.answer-container{
+    padding-inline-end: 15rem;
+}
+.answer-container div {
+    font-family: answer-text;
+    font-size: 6rem;
+}
+.answer-container span {
+    color: var(--ans-number);
+    font-family: 'answer-number';
+    letter-spacing: 5px;
+}
+.err-msg{
+    color: var(--err-txt);
+}
+.err-input{
+    border: 1px solid var(--err-txt);
+}
+.hide{
+    display: none;
+}
+input:focus-visible{
+    outline: 2px solid var(--ans-number);
+}
