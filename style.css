@@ -172,3 +172,14 @@ hr{
 input:focus-visible{
     outline: 2px solid var(--ans-number);
 }
+@media (max-width:850px){
+    .answer-container{
+        padding-inline-end: 0rem;
+    }
+    hr{
+        margin-block: 4rem;
+    }
+    button{
+        right: 40%;
+    }
+}
