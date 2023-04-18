@@ -3,12 +3,13 @@ document.getElementsByTagName('form')[0].addEventListener('submit',() => {
     let canCalculate = true;
     for (const el of event.target.elements){
         if(el === event.submitter){
-            return;
+            break;
         }
-        canCalulate = canCalulate && checkIfEmpty(el);
-        canCalulate = canCalulate && checkIfValid(el);
+        canCalculate = canCalculate && checkIfEmpty(el);
+        canCalculate = canCalculate && checkIfValid(el);
     }
-    canCalculate && getDateDiff();
+    const inputDate = new Date(`${event.target.elements.month.value}-${event.target.elements.day.value}-${event.target.elements.year.value}`);
+    canCalculate && showDateDiff(inputDate);
 });
 
 checkIfEmpty = (el) => {
@@ -22,11 +23,12 @@ checkIfEmpty = (el) => {
         el.parentElement.children[2].classList.add('hide');
         el.parentElement.children[1].classList.remove('err-input');
         el.parentElement.children[0].classList.remove('err-msg');
+        return true;
     }
 }
 checkIfValid = (el) => {
     if(el.value.length === 0){
-        return;
+        return false;
     }
     const inputVal = parseInt(el.value);
     const currentYear = new Date().getFullYear();
@@ -43,9 +45,19 @@ checkIfValid = (el) => {
         el.parentElement.children[2].classList.add('hide');
         el.parentElement.children[1].classList.remove('err-input');
         el.parentElement.children[0].classList.remove('err-msg');
+        return true;
     }
 }
 
-getDateDiff = () => {
+showDateDiff = (inputDate) => {
+    let diffInDays = Math.floor(Math.abs(inputDate - new Date()) / (1000 * 60 * 60 * 24));
+    const years = Math.floor(diffInDays/365.25);
+    diffInDays-=(years * 365.25);
+    const months = Math.floor(diffInDays/30.44);
+    diffInDays-=(30.44 * months);
+    const answerSpan = document.getElementsByClassName('answer');
+    answerSpan[2].innerText = Math.ceil(diffInDays);
+    answerSpan[1].innerText = months;
+    answerSpan[0].innerText = years;
     
 }
